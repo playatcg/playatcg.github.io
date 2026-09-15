@@ -1,249 +1,210 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ATCG — Play Something Different</title>
-<style>
-  * { box-sizing: border-box; }
-  html, body { margin: 0; min-height: 100%; }
-  body {
-    font-family: Inter, Arial, sans-serif;
-    color: #fff;
-    background:
-      radial-gradient(circle at 15% 20%, rgba(183, 255, 0, .18), transparent 28%),
-      radial-gradient(circle at 85% 75%, rgba(155, 70, 255, .22), transparent 30%),
-      #09070f;
-    overflow-x: hidden;
-  }
-  .noise {
-    position: fixed; inset: 0; pointer-events: none; opacity: .055;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-  main {
-    width: min(1100px, 92vw);
-    margin: 0 auto;
-    padding: 42px 0 55px;
-    text-align: center;
-  }
-  .badge {
-    display: inline-block;
-    padding: 8px 14px;
-    border: 1px solid rgba(255,255,255,.18);
-    border-radius: 999px;
-    color: #caff4a;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    backdrop-filter: blur(8px);
-  }
-  .logo-wrap {
-    margin: 28px auto 8px;
-    width: min(620px, 90vw);
-  }
-  canvas {
-    width: 100%;
-    height: auto;
-    display: block;
-    filter: drop-shadow(0 0 30px rgba(190,255,0,.18));
-  }
-  .tagline {
-    margin: 0 auto 42px;
-    max-width: 720px;
-    font-size: clamp(20px, 3vw, 34px);
-    font-weight: 800;
-    line-height: 1.12;
-  }
-  .tagline span { color: #caff4a; }
-  section {
-    margin-top: 30px;
-    padding: 30px;
-    border: 1px solid rgba(255,255,255,.1);
-    border-radius: 28px;
-    background: rgba(255,255,255,.045);
-    box-shadow: 0 20px 80px rgba(0,0,0,.28);
-    backdrop-filter: blur(14px);
-  }
-  h2 {
-    margin: 0 0 24px;
-    font-size: 14px;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: #caff4a;
-  }
-  .team {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-  .member {
-    padding: 24px 16px;
-    border-radius: 20px;
-    background: linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,255,255,.025));
-    border: 1px solid rgba(255,255,255,.08);
-    transition: transform .2s ease, border-color .2s ease;
-  }
-  .member:hover {
-    transform: translateY(-6px) rotate(-1deg);
-    border-color: rgba(202,255,74,.55);
-  }
-  .member strong { display: block; font-size: 22px; }
-  .member small {
-    display: block;
-    margin-top: 7px;
-    color: #b9b3c8;
-    font-weight: 700;
-    letter-spacing: .08em;
-  }
-  .video {
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    border-radius: 18px;
-    background: #030305;
-    border: 1px solid rgba(255,255,255,.1);
-    display: grid;
-    place-items: center;
-    position: relative;
-  }
-  .video::before {
-    content: "▶";
-    width: 74px; height: 74px;
-    border-radius: 50%;
-    display: grid; place-items: center;
-    background: #caff4a;
-    color: #09070f;
-    font-size: 28px;
-    padding-left: 4px;
-    box-shadow: 0 0 35px rgba(202,255,74,.35);
-  }
-  .video p {
-    position: absolute;
-    bottom: 18px;
-    margin: 0;
-    color: #aaa4b7;
-    font-size: 13px;
-  }
-  .contact {
-    margin-top: 30px;
-    padding: 34px 20px;
-  }
-  .email {
-    color: #fff;
-    text-decoration: none;
-    font-size: clamp(20px, 4vw, 34px);
-    font-weight: 900;
-    word-break: break-word;
-  }
-  .email:hover { color: #caff4a; }
-  footer {
-    margin-top: 28px;
-    color: #777181;
-    font-size: 12px;
-    letter-spacing: .12em;
-  }
-  @media (max-width: 700px) {
-    .team { grid-template-columns: 1fr; }
-    section { padding: 22px 16px; }
-  }
-</style>
-</head>
-<body>
-<div class="noise"></div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ATCG · All The Cool Games</title>
+		<meta
+			name="description"
+			content="ATCG is a three-person indie game studio. We're making Ice Cream Apocalypse, an asymmetric co-op roguelike for two: one scoops, one shoots."
+		/>
+		<meta name="theme-color" content="#f7f5ef" />
+		<link rel="icon" href="favicon.svg" type="image/svg+xml" />
 
-<main>
-  <div class="badge">INDIE GAME STUDIO • 2026</div>
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://playatcg.com/" />
+		<meta property="og:title" content="ATCG · All The Cool Games" />
+		<meta
+			property="og:description"
+			content="A three-person indie game studio. Now making Ice Cream Apocalypse."
+		/>
+		<meta property="og:image" content="https://playatcg.com/media/og.jpg" />
+		<meta name="twitter:card" content="summary_large_image" />
 
-  <div class="logo-wrap">
-    <canvas id="logo" width="1000" height="360" aria-label="ATCG logo"></canvas>
-  </div>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<header class="site-header">
+			<a class="mark mark--small" href="#top" aria-label="ATCG, home">
+				<span class="tile" data-base="a">A</span
+				><span class="tile" data-base="t">T</span
+				><span class="tile" data-base="c">C</span
+				><span class="tile" data-base="g">G</span>
+			</a>
+			<nav aria-label="Main">
+				<a href="#games">Games</a>
+				<a href="#team">Team</a>
+				<a href="#contact">Contact</a>
+			</nav>
+		</header>
 
-  <p class="tagline">
-    WE MAKE GAMES THAT ARE <span>WEIRD, PLAYFUL &amp; ALIVE.</span>
-  </p>
+		<main id="top">
+			<section class="hero">
+				<h1>
+					<span class="sr-only">ATCG: All The Cool Games</span>
+					<!-- Hover (or tap) the tiles to spell out the name. -->
+					<span class="mark mark--hero" aria-hidden="true">
+						<span class="tile" data-base="a"
+							>A<span class="rest"><span>ll</span></span></span
+						>
+						<span class="tile" data-base="t"
+							>T<span class="rest"><span>he</span></span></span
+						>
+						<span class="tile" data-base="c"
+							>C<span class="rest"><span>ool</span></span></span
+						>
+						<span class="tile" data-base="g"
+							>G<span class="rest"><span>ames</span></span></span
+						>
+					</span>
+				</h1>
 
-  <section>
-    <h2>The Team</h2>
-    <div class="team">
-      <div class="member"><strong>NOA</strong><small>CEO</small></div>
-      <div class="member"><strong>JONATHAN</strong><small>PROGRAMMER</small></div>
-      <div class="member"><strong>YASMIN</strong><small>TECH ARTIST</small></div>
-    </div>
-  </section>
+				<p class="lede">
+					We're a small studio making big swings; we like games, we
+					like making them, and we think you might like them, too.
+					Check out <a href="#games">Ice Cream Apocalypse</a>, coming
+					soon!
+				</p>
 
-  <section>
-    <h2>Watch Us Play</h2>
-    <div class="video" id="videoBox">
-      <p>Replace this panel with your YouTube video embed.</p>
-    </div>
-  </section>
+				<figure class="snapshot">
+					<video
+						src="media/playtest.mp4"
+						poster="media/playtest.webp"
+						autoplay
+						muted
+						loop
+						playsinline
+						preload="metadata"
+						aria-label="Two players with a controller, playing Ice Cream Apocalypse at our playtest booth"
+					></video>
+					<figcaption>
+						Playtest booth @ Animatsuri (August 26th, 2026)
+					</figcaption>
+				</figure>
+			</section>
 
-  <section class="contact">
-    <h2>Let's Make Something</h2>
-    <a class="email" href="mailto:contact@playatcg.com">contact@playatcg.com</a>
-  </section>
+			<section id="games" class="band">
+				<h2 class="section-title">Games</h2>
 
-  <footer>ATCG — PLAY. BREAK. CREATE.</footer>
-</main>
+				<article class="game">
+					<img
+						class="game-art"
+						src="media/ica-keyart.webp"
+						width="1200"
+						height="900"
+						alt="Ice Cream Apocalypse key art: a cheerful grandma holding an ice cream cone, and her zombie double on the other side of a lightning bolt."
+					/>
 
-<script>
-const canvas = document.getElementById("logo");
-const ctx = canvas.getContext("2d");
+					<div class="game-body">
+						<p class="status">In development</p>
+						<h3>Ice Cream Apocalypse</h3>
+						<p>
+							Just because it's a Zombie Apocalypse doesn't mean
+							you can clock out! One's on the weapons, the other's
+							on the scoops; an asymmetric co-op roguelike for 2.
+							Serve the ones munching for ice cream, shoot the
+							ones munching for brains.
+						</p>
+						<ul class="facts">
+							<li>A food-game/FPS hybrid</li>
+							<li>Chill cooperative roguelike</li>
+							<li>Uncover the conspiracy</li>
+						</ul>
+						<!-- TODO: add these links once they exist.
+        <p class="links">
+          <a class="button" href="#">Wishlist on Steam</a>
+          <a class="button button--quiet" href="#">itch.io</a>
+        </p>
+        -->
+					</div>
 
-function drawLogo() {
-  const w = canvas.width, h = canvas.height;
-  ctx.clearRect(0, 0, w, h);
+					<figure class="game-clip">
+						<video
+							src="media/ica-gameplay.mp4"
+							poster="media/ica-gameplay.webp"
+							autoplay
+							muted
+							loop
+							playsinline
+							preload="none"
+							aria-label="Ice Cream Apocalypse gameplay: serving ice cream, choosing cards, fighting a zombie raid"
+						></video>
+						<figcaption>From our latest update build.</figcaption>
+					</figure>
+				</article>
+			</section>
 
-  // playful DNA/game-inspired helix
-  ctx.save();
-  ctx.translate(w / 2, 42);
+			<section id="team">
+				<h2 class="section-title">Team</h2>
+				<ul class="team">
+					<li class="member">
+						<span class="avatar" data-base="a" aria-hidden="true"
+							>N</span
+						>
+						<h3>Noa Merom</h3>
+						<p class="role">CEO, Lead Designer</p>
+						<p class="bio">The one who brings them all together.</p>
+					</li>
+					<li class="member">
+						<img
+							src="media/jonathan.webp"
+							alt=""
+							width="84"
+							height="84"
+						/>
+						<h3>Jonathan Eddie Amir</h3>
+						<p class="role">Lead Developer</p>
+						<p class="bio">The one who brings them all together.</p>
+					</li>
+					<li class="member">
+						<img
+							src="media/jasmine.webp"
+							alt=""
+							width="84"
+							height="84"
+						/>
+						<h3>Jasmine Elal Gindi</h3>
+						<p class="role">Lead Artist</p>
+						<p class="bio">The one who brings them all together.</p>
+					</li>
+				</ul>
+			</section>
 
-  ctx.lineWidth = 12;
-  ctx.lineCap = "round";
+			<section id="contact" class="contact band">
+				<h2 class="section-title">Contact</h2>
+				<p>Press, playtests, publishing, or just saying hi:</p>
+				<a class="email" href="mailto:contact@playatcg.com"
+					>contact@playatcg.com</a
+				>
+			</section>
+		</main>
 
-  const colors = ["#caff4a", "#b46cff", "#59f0ff", "#ff5c9a"];
+		<footer class="site-footer">
+			<p>&copy; 2026 All The Cool Games</p>
+			<p class="motto">Play's in our DNA</p>
+		</footer>
 
-  for (let strand = 0; strand < 2; strand++) {
-    ctx.beginPath();
-    for (let x = -300; x <= 300; x += 5) {
-      const y = 105 + Math.sin(x / 55) * 48 * (strand ? -1 : 1);
-      if (x === -300) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-    ctx.strokeStyle = colors[strand];
-    ctx.stroke();
-  }
+		<script>
+			// Tap to spell out the name on touch screens (hover covers mouse users).
+			const heroMark = document.querySelector(".mark--hero");
+			heroMark.addEventListener("click", () =>
+				heroMark.classList.toggle("is-open"),
+			);
 
-  // connecting "DNA" / controller bars
-  for (let x = -275; x <= 275; x += 55) {
-    const a = Math.sin(x / 55) * 48;
-    ctx.beginPath();
-    ctx.moveTo(x, 105 - a);
-    ctx.lineTo(x, 105 + a);
-    ctx.strokeStyle = "rgba(255,255,255,.34)";
-    ctx.lineWidth = 5;
-    ctx.stroke();
-  }
-
-  ctx.restore();
-
-  // ATCG wordmark
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.font = "900 170px Arial Black, Arial, sans-serif";
-  ctx.shadowColor = "rgba(202,255,74,.22)";
-  ctx.shadowBlur = 22;
-  ctx.fillStyle = "#ffffff";
-  ctx.fillText("ATCG", w/2, 240);
-
-  // small accent
-  ctx.shadowBlur = 0;
-  ctx.font = "800 22px Arial, sans-serif";
-  ctx.fillStyle = "#caff4a";
-  ctx.letterSpacing = "8px";
-  ctx.fillText("PLAY SOMETHING DIFFERENT", w/2, 326);
-}
-drawLogo();
-</script>
-</body>
+			// Respect reduced motion: no autoplaying video, show controls instead.
+			if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+				for (const video of document.querySelectorAll("video")) {
+					video.removeAttribute("autoplay");
+					video.pause();
+					video.controls = true;
+				}
+			}
+		</script>
+	</body>
 </html>

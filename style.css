@@ -1,0 +1,322 @@
+/* ATCG · playatcg.com
+   Colours are pulled from our own stuff: the aqua + navy of the playtest
+   title card, and the pink / mint / butter / slime of the game's key art.
+   A pairs with T, C pairs with G, hence the two warm/cool couples. */
+
+:root {
+  --paper: #f7f5ef;
+  --aqua: #d4ecec;
+  --ink: #14205e;
+  --ink-soft: #4a5384;
+
+  --base-a: #f6a9c3; /* strawberry */
+  --base-t: #a9dfd6; /* mint */
+  --base-c: #f8d98b; /* butter */
+  --base-g: #a4dc6f; /* slime */
+
+  --line: 2.5px solid var(--ink);
+  --shadow: 5px 5px 0 var(--ink);
+  --radius: 14px;
+
+  --font: "Rubik", system-ui, sans-serif;
+  --gutter: clamp(16px, 4vw, 40px);
+  --max: 1120px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1.0625rem/1.55 var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+img, video { display: block; max-width: 100%; height: auto; }
+
+a { color: inherit; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--base-a); }
+
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---------- The ATCG tiles ---------- */
+
+.mark { display: inline-flex; gap: .18em; text-decoration: none; }
+
+.tile {
+  display: inline-flex;
+  align-items: baseline;
+  padding: .08em .28em .02em;
+  border: var(--line);
+  border-radius: .22em;
+  background: var(--tile-color, var(--aqua));
+  font-weight: 900;
+  line-height: 1;
+}
+[data-base="a"] { --tile-color: var(--base-a); }
+[data-base="t"] { --tile-color: var(--base-t); }
+[data-base="c"] { --tile-color: var(--base-c); }
+[data-base="g"] { --tile-color: var(--base-g); }
+
+.mark--small { font-size: 1.1rem; }
+.mark--small .tile { border-width: 2px; }
+
+.mark--hero {
+  font-size: clamp(2.6rem, 9vw, 5.5rem);
+  flex-wrap: wrap;
+  cursor: pointer;
+  user-select: none;
+}
+.mark--hero .tile { box-shadow: 4px 4px 0 var(--ink); }
+.mark--hero .tile:nth-child(odd)  { rotate: -2deg; }
+.mark--hero .tile:nth-child(even) { rotate: 1.5deg; }
+
+/* The rest of each word, collapsed to zero width until revealed. */
+.rest {
+  display: inline-grid;
+  grid-template-columns: 0fr;
+  transition: grid-template-columns .35s cubic-bezier(.3, 1.4, .5, 1);
+}
+.rest > span { overflow: hidden; font-weight: 500; }
+
+.mark--hero:hover .rest,
+.mark--hero.is-open .rest { grid-template-columns: 1fr; }
+
+.mark--hero .tile:nth-child(2) .rest { transition-delay: .04s; }
+.mark--hero .tile:nth-child(3) .rest { transition-delay: .08s; }
+.mark--hero .tile:nth-child(4) .rest { transition-delay: .12s; }
+
+/* ---------- Layout ---------- */
+
+.site-header,
+main > section,
+.site-footer {
+  padding-inline: var(--gutter);
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-block: 1.25rem;
+}
+.site-header nav { display: flex; gap: clamp(.9rem, 3vw, 2rem); font-weight: 500; }
+.site-header nav a { text-decoration: none; }
+.site-header nav a:hover { text-decoration: underline; text-decoration-color: var(--base-a); }
+
+main > section { padding-block: clamp(3rem, 8vw, 6rem); }
+main > section > * { max-width: var(--max); margin-inline: auto; }
+
+.band { background: var(--aqua); border-block: var(--line); }
+
+.section-title {
+  margin-block: 0 2rem;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  max-width: calc(var(--max) + 2 * var(--gutter));
+  margin: 0 auto;
+}
+.hero > * { max-width: none; margin: 0; }
+
+.hero h1 { grid-column: 1 / -1; margin: 0; }
+
+.lede {
+  margin: 0;
+  max-width: 34ch;
+  font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+  line-height: 1.45;
+}
+
+/* A photo taped to the page. */
+.snapshot {
+  position: relative;
+  margin: 0;
+  padding: 10px 10px 0;
+  background: #fff;
+  border: var(--line);
+  box-shadow: var(--shadow);
+  rotate: 1.2deg;
+}
+.snapshot::before {
+  content: "";
+  position: absolute;
+  top: -14px; left: 50%;
+  width: 110px; height: 28px;
+  translate: -50% 0;
+  rotate: -3deg;
+  background: color-mix(in srgb, var(--base-c) 75%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--ink) 25%, transparent);
+}
+.snapshot video { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--aqua); }
+.snapshot figcaption { padding: .7rem .2rem .8rem; font-size: .92rem; color: var(--ink-soft); }
+
+@media (min-width: 860px) {
+  .hero { grid-template-columns: 5fr 6fr; }
+}
+
+/* ---------- Games ---------- */
+
+.game {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  padding: clamp(1rem, 3vw, 1.75rem);
+  background: var(--paper);
+  border: var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.game-art,
+.game-clip video {
+  width: 100%;
+  border: var(--line);
+  border-radius: calc(var(--radius) - 4px);
+}
+.game-art { aspect-ratio: 4 / 3; object-fit: cover; }
+
+.game-body h3 { margin: .3rem 0 .8rem; font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 900; line-height: 1.1; }
+.game-body p { margin: 0 0 1rem; max-width: 52ch; }
+
+.status {
+  display: inline-block;
+  padding: .15rem .6rem;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--base-g);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.facts { margin: 0 0 1.25rem; padding: 0; list-style: none; }
+.facts li { padding-left: 1.5rem; position: relative; margin-bottom: .35rem; }
+.facts li::before {
+  content: "";
+  position: absolute; left: 0; top: .5em;
+  width: .7rem; height: .7rem;
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+  background: var(--base-a);
+}
+.facts li:nth-child(2)::before { background: var(--base-t); }
+.facts li:nth-child(3)::before { background: var(--base-c); }
+
+.button {
+  display: inline-block;
+  padding: .6rem 1.1rem;
+  border: var(--line);
+  border-radius: 10px;
+  background: var(--base-a);
+  box-shadow: 3px 3px 0 var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+.button:hover { translate: -1px -1px; box-shadow: 4px 4px 0 var(--ink); }
+.button:active { translate: 2px 2px; box-shadow: 1px 1px 0 var(--ink); }
+.button--quiet { background: var(--paper); }
+
+.game-clip { margin: 0; }
+.game-clip video { aspect-ratio: 16 / 9; object-fit: cover; background: var(--ink); }
+.game-clip figcaption { margin-top: .5rem; font-size: .92rem; color: var(--ink-soft); }
+
+@media (min-width: 860px) {
+  .game { grid-template-columns: 1fr 1fr; align-items: start; }
+  .game-clip { grid-column: 1 / -1; }
+}
+
+/* ---------- Team ---------- */
+
+.team {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.member {
+  padding: 1.5rem;
+  background: #fff;
+  border: var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.member:nth-child(1) { rotate: -.6deg; }
+.member:nth-child(3) { rotate: .6deg; }
+
+.avatar,
+.member img {
+  display: grid;
+  place-items: center;
+  width: 84px;
+  aspect-ratio: 1;
+  margin-bottom: 1rem;
+  border: var(--line);
+  border-radius: 50%;
+  background: var(--tile-color);
+  font-size: 2rem;
+  font-weight: 900;
+  object-fit: cover;
+}
+
+.member h3 { margin: 0; font-size: 1.4rem; font-weight: 900; }
+.member .role { margin: .1rem 0 .75rem; font-weight: 500; color: var(--ink-soft); }
+.member .bio { margin: 0; }
+
+/* ---------- Contact ---------- */
+
+.contact { text-align: center; }
+.contact p { margin: 0 auto .75rem; }
+.email {
+  display: inline-block;
+  font-size: clamp(1.4rem, 5vw, 2.6rem);
+  font-weight: 900;
+  word-break: break-word;
+  text-decoration-color: var(--base-a);
+  text-decoration-thickness: 4px;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .5rem 2rem;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-block: 2rem 2.5rem;
+  font-size: .9rem;
+  color: var(--ink-soft);
+}
+.site-footer p { margin: 0; }
+
+/* ---------- Motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rest { transition: none; }
+}
