@@ -1,213 +1,660 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>ATCG · All The Cool Games</title>
-		<meta
-			name="description"
-			content="ATCG is a three-person indie game studio. We're making Ice Cream Apocalypse, an asymmetric co-op roguelike for two: one scoops, one shoots."
-		/>
-		<meta name="theme-color" content="#f7f5ef" />
-		<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATCG · All The Cool Games</title>
+  <meta name="description" content="ATCG is a three-person indie game studio. We're making Ice Cream Apocalypse, an asymmetric co-op roguelike for two: one scoops, one shoots.">
+  <meta name="theme-color" content="#f7f5ef">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://playatcg.com/" />
-		<meta property="og:title" content="ATCG · All The Cool Games" />
-		<meta
-			property="og:description"
-			content="A three-person indie game studio. Now making Ice Cream Apocalypse."
-		/>
-		<meta property="og:image" content="https://playatcg.com/media/og.jpg" />
-		<meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://playatcg.com/">
+  <meta property="og:title" content="ATCG · All The Cool Games">
+  <meta property="og:description" content="A three-person indie game studio. Now making Ice Cream Apocalypse.">
+  
+  <!-- Google Fonts: Science Gothic & Carrois Gothic SC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&family=Science+Gothic:wght@400;700;800;900&display=swap" rel="stylesheet">
 
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&display=swap"
-			rel="stylesheet"
-		/>
-		<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-		<header class="site-header">
-			<a class="mark mark--small" href="#top" aria-label="ATCG, home">
-				<span class="tile" data-base="a">A</span
-				><span class="tile" data-base="t">T</span
-				><span class="tile" data-base="c">C</span
-				><span class="tile" data-base="g">G</span>
-			</a>
-			<nav aria-label="Main">
-				<a href="#games">Games</a>
-				<a href="#team">Team</a>
-				<a href="#contact">Contact</a>
-			</nav>
-		</header>
+  <style>
+    :root {
+      /* Surface & Ink */
+      --paper: #F8F8F8;
+      --aqua: #d8f8ff; /* Soft cyan tint for section backgrounds */
+      --ink: #000066;  /* Deep Navy Blue from logo border */
+      --ink-soft: #3B4171;
 
-		<main id="top">
-			<section class="hero">
-				<h1>
-					<span class="sr-only">ATCG: All The Cool Games</span>
-					<!-- Hover (or tap) the tiles to spell out the name. -->
-					<span class="mark mark--hero" aria-hidden="true">
-						<span class="tile" data-base="a"
-							>A<span class="rest"><span>ll</span></span></span
-						>
-						<span class="tile" data-base="t"
-							>T<span class="rest"><span>he</span></span></span
-						>
-						<span class="tile" data-base="c"
-							>C<span class="rest"><span>ool</span></span></span
-						>
-						<span class="tile" data-base="g"
-							>G<span class="rest"><span>ames</span></span></span
-						>
-					</span>
-				</h1>
+      /* Logo ATCG Accent Palette */
+      --base-a: #f512b3; /* Bright Magenta */
+      --base-t: #00d8f6; /* Cyan / Bright Blue */
+      --base-c: #ff9900; /* Golden Orange */
+      --base-g: #74e013; /* Lime Green */
 
-				<p class="lede">
-					We're a small studio making big swings; we like games, we
-					like making them, and we think you might like them, too.
-					Check out <a href="#games">Ice Cream Apocalypse</a>, coming
-					soon!
-				</p>
+      /* UI Variables */
+      --line: 3px solid var(--ink);
+      --shadow: 5px 5px 0 var(--ink);
 
-				<figure class="snapshot">
-					<video
-						src="media/playtest.mp4"
-						poster="media/playtest.webp"
-						autoplay
-						muted
-						loop
-						playsinline
-						preload="metadata"
-						aria-label="Two players with a controller, playing Ice Cream Apocalypse at our playtest booth"
-					></video>
-					<figcaption>
-						Playtest booth @ Animatsuri (August 26th, 2026)
-					</figcaption>
-				</figure>
-			</section>
+      /* Fonts */
+      --font-heading: "Science Gothic", sans-serif;
+      --font-body: "Carrois Gothic SC", sans-serif;
 
-			<section id="games" class="band">
-				<h2 class="section-title">Games</h2>
+      --gutter: clamp(16px, 4vw, 40px);
+      --max: 1120px;
+    }
 
-				<article class="game">
-					<img
-						class="game-art"
-						src="media/ica-keyart.webp"
-						width="1200"
-						height="900"
-						alt="Ice Cream Apocalypse key art: a cheerful grandma holding an ice cream cone, and her zombie double on the other side of a lightning bolt."
-					/>
+    *, *::before, *::after { box-sizing: border-box; }
 
-					<div class="game-body">
-						<p class="status">In development</p>
-						<h3>Ice Cream Apocalypse</h3>
-						<p>
-							Just because it's a Zombie Apocalypse doesn't mean
-							you can clock out! One's on the weapons, the other's
-							on the scoops; an asymmetric co-op roguelike for 2.
-							Serve the ones munching for ice cream, shoot the
-							ones munching for brains.
-						</p>
-						<ul class="facts">
-							<li>A food-game/FPS hybrid</li>
-							<li>Chill cooperative roguelike</li>
-							<li>Uncover the conspiracy</li>
-						</ul>
-						<!-- TODO: add these links once they exist.
-        <p class="links">
-          <a class="button" href="#">Wishlist on Steam</a>
-          <a class="button button--quiet" href="#">itch.io</a>
-        </p>
-        -->
-					</div>
+    html { scroll-behavior: smooth; }
 
-					<figure class="game-clip">
-						<video
-							src="media/ica-gameplay.mp4"
-							poster="media/ica-gameplay.webp"
-							autoplay
-							muted
-							loop
-							playsinline
-							preload="none"
-							aria-label="Ice Cream Apocalypse gameplay: serving ice cream, choosing cards, fighting a zombie raid"
-						></video>
-						<figcaption>From our latest update build.</figcaption>
-					</figure>
-				</article>
-			</section>
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 400 1.05rem/1.55 var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
 
-			<section id="team">
-				<h2 class="section-title">Team</h2>
-				<ul class="team">
-					<li class="member">
-						<img
-							src="media/noa.webp"
-							alt=""
-							width="84"
-							height="84"
-						/>
-						<h3>Noa Merom</h3>
-						<p class="role">CEO, Lead Producer</p>
-						<p class="bio">The one who's crazy.</p>
-					</li>
-					<li class="member">
-						<img
-							src="media/jonathan.webp"
-							alt=""
-							width="84"
-							height="84"
-						/>
-						<h3>Jonathan Eddie Amir</h3>
-						<p class="role">Lead Developer</p>
-						<p class="bio">The one who makes stuff work.</p>
-					</li>
-					<li class="member">
-						<img
-							src="media/jasmine.webp"
-							alt=""
-							width="84"
-							height="84"
-						/>
-						<h3>Jasmine Elal Gindi</h3>
-						<p class="role">Lead Artist</p>
-						<p class="bio">The one who makes stuff pretty.</p>
-					</li>
-				</ul>
-			</section>
+    h1, h2, h3, h4, h5, h6,
+    .section-title {
+      font-family: var(--font-heading);
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
 
-			<section id="contact" class="contact band">
-				<h2 class="section-title">Contact</h2>
-				<p>Press, playtests, publishing, or just saying hi:</p>
-				<a class="email" href="mailto:contact@playatcg.com"
-					>contact@playatcg.com</a
-				>
-			</section>
-		</main>
+    p, li, figcaption, span, body {
+      font-family: var(--font-body);
+    }
 
-		<footer class="site-footer">
-			<p>&copy; 2026 All The Cool Games</p>
-			<p class="motto">Play's in our DNA</p>
-		</footer>
+    img, video { display: block; max-width: 100%; height: auto; }
 
-		<script>
-			// Tap to spell out the name on touch screens (hover covers mouse users).
-			const heroMark = document.querySelector(".mark--hero");
-			heroMark.addEventListener("click", () =>
-				heroMark.classList.toggle("is-open"),
-			);
+    a { color: inherit; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+    a:hover { text-decoration-color: var(--base-a); }
 
-			// Respect reduced motion: no autoplaying video, show controls instead.
-			if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
-				for (const video of document.querySelectorAll("video")) {
-					video.removeAttribute("autoplay");
-					video.pause();
-					video.controls = true;
-				}
-			}
-		</script>
-	</body>
+    :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    }
+
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding-block: 1rem;
+      padding-inline: var(--gutter);
+    }
+
+    .site-header nav {
+      display: flex;
+      gap: clamp(0.4rem, 2vw, 1.1rem);
+      align-items: center;
+    }
+
+    /* Small, elevated cartoonish trapezoid nav buttons */
+    .site-header nav a {
+      display: inline-block;
+      padding: 0.45em 1.1em;
+      font-size: 0.85rem;
+      background: #ffffff;
+      border: var(--line);
+      text-decoration: none;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      box-shadow: 3px 3px 0 var(--ink);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    .site-header nav a:nth-child(1) {
+      clip-path: polygon(2% 6%, 97% 1%, 95% 96%, 4% 98%);
+      transform: translateY(-4px) rotate(-2.5deg);
+      padding: 0.45em 1.25em 0.38em 0.95em;
+    }
+
+    .site-header nav a:nth-child(2) {
+      clip-path: polygon(5% 1%, 98% 5%, 92% 98%, 1% 92%);
+      transform: translateY(-5px) rotate(2deg);
+      padding: 0.5em 0.95em 0.38em 1.15em;
+    }
+
+    .site-header nav a:nth-child(3) {
+      clip-path: polygon(1% 3%, 95% 2%, 98% 95%, 3% 97%);
+      transform: translateY(-3px) rotate(-1.5deg);
+      padding: 0.42em 1.3em 0.45em 1.05em;
+    }
+
+    .site-header nav a:hover {
+      transform: translateY(-6px) scale(1.06) rotate(0deg);
+      box-shadow: 5px 5px 0 var(--ink);
+      background: var(--base-t);
+      color: var(--ink);
+    }
+
+    .mark { 
+      display: inline-flex; 
+      gap: 0.15em; 
+      text-decoration: none; 
+      align-items: center;
+    }
+
+    .tile {
+      display: inline-flex;
+      align-items: baseline;
+      padding: 0.08em 0.22em 0.04em;
+      border: var(--line);
+      background: var(--tile-color, var(--aqua));
+      font-family: var(--font-heading);
+      font-weight: 900;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    [data-base="a"] { 
+      --tile-color: var(--base-a); 
+      clip-path: polygon(2% 4%, 98% 0%, 95% 98%, 0% 95%);
+    }
+    [data-base="t"] { 
+      --tile-color: var(--base-t); 
+      clip-path: polygon(0% 1%, 96% 5%, 100% 92%, 4% 98%);
+    }
+    [data-base="c"] { 
+      --tile-color: var(--base-c); 
+      clip-path: polygon(4% 0%, 98% 3%, 94% 96%, 2% 100%);
+    }
+    [data-base="g"] { 
+      --tile-color: var(--base-g); 
+      clip-path: polygon(1% 5%, 95% 1%, 98% 97%, 3% 93%);
+    }
+
+    /* HEADER MARK FIX: Scaled clamp font-size & tighter letter spacing so expanded text stays on single row */
+    .mark--hero {
+      font-size: clamp(1.8rem, 4.8vw, 3.8rem);
+      flex-wrap: nowrap;
+      cursor: pointer;
+      user-select: none;
+      width: 100%;
+      justify-content: flex-start;
+    }
+    /* Cancelled outline/border specifically for hero expanded opening tiles */
+    .mark--hero .tile { 
+      border: none;
+      box-shadow: 3px 3px 0 var(--ink); 
+      padding: 0.05em 0.22em 0.02em;
+    }
+    .mark--hero .tile:nth-child(1) { transform: rotate(-1.5deg); }
+    .mark--hero .tile:nth-child(2) { transform: rotate(1.2deg); }
+    .mark--hero .tile:nth-child(3) { transform: rotate(-0.8deg); }
+    .mark--hero .tile:nth-child(4) { transform: rotate(1.8deg); }
+
+    .rest {
+      display: inline-grid;
+      grid-template-columns: 0fr;
+      transition: grid-template-columns 0.35s cubic-bezier(.3, 1.4, .5, 1);
+    }
+    .rest > span { 
+      overflow: hidden; 
+      font-family: var(--font-body);
+      font-size: 0.82em;
+      letter-spacing: -0.02em;
+      text-transform: lowercase;
+      white-space: nowrap;
+    }
+
+    .mark--hero:hover .rest,
+    .mark--hero.is-open .rest { 
+      grid-template-columns: 1fr; 
+    }
+
+    main > section,
+    .site-footer {
+      padding-inline: var(--gutter);
+    }
+
+    main > section { padding-block: clamp(2.5rem, 6vw, 5rem); }
+    main > section > * { max-width: var(--max); margin-inline: auto; }
+
+    .band { background: var(--aqua); border-block: var(--line); }
+
+    .section-title {
+      margin-block: 0 2rem;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      line-height: 1.1;
+      display: inline-block;
+      background: var(--base-c);
+      padding: 0.2em 0.8em;
+      border: var(--line);
+      box-shadow: 4px 4px 0 var(--ink);
+      transform: rotate(-1deg);
+      clip-path: polygon(1% 4%, 99% 1%, 97% 96%, 2% 98%);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(2rem, 5vw, 3.5rem);
+      align-items: center;
+      max-width: calc(var(--max) + 2 * var(--gutter));
+      margin: 0 auto;
+    }
+    .hero > * { max-width: none; margin: 0; }
+    .hero h1 { 
+      grid-column: 1 / -1; 
+      margin: 0; 
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .lede {
+      margin: 0;
+      max-width: 38ch;
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      line-height: 1.45;
+    }
+
+    .snapshot {
+      position: relative;
+      margin: 0;
+      padding: 12px 12px 0;
+      background: #fff;
+      border: var(--line);
+      box-shadow: var(--shadow);
+      transform: rotate(1.5deg);
+      clip-path: polygon(1% 2%, 98% 0%, 97% 98%, 0% 97%);
+    }
+    .snapshot::before {
+      content: "";
+      position: absolute;
+      top: -14px; left: 50%;
+      width: 120px; height: 28px;
+      transform: translateX(-50%) rotate(-3deg);
+      background: color-mix(in srgb, var(--base-c) 80%, transparent);
+      border: 1.5px solid color-mix(in srgb, var(--ink) 30%, transparent);
+      clip-path: polygon(2% 8%, 98% 2%, 95% 92%, 4% 96%);
+    }
+    .snapshot video { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--aqua); border: var(--line); clip-path: polygon(0% 1%, 99% 2%, 97% 97%, 1% 99%); }
+    .snapshot figcaption { padding: .7rem .2rem .8rem; font-size: .9rem; color: var(--ink-soft); }
+
+    @media (min-width: 860px) {
+      .hero { grid-template-columns: 5fr 6fr; }
+    }
+
+    .game {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+      padding: clamp(1.2rem, 3vw, 2rem);
+      background: var(--paper);
+      border: var(--line);
+      box-shadow: var(--shadow);
+      clip-path: polygon(0.5% 1%, 99.5% 0.5%, 99% 99%, 1% 98.5%);
+    }
+
+    .game-art {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border: var(--line);
+      clip-path: polygon(1% 2%, 98% 0%, 96% 98%, 2% 96%);
+    }
+
+    .game-body h3 { 
+      margin: .3rem 0 .8rem; 
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem); 
+      line-height: 1.1; 
+    }
+    .game-body p { margin: 0 0 1rem; max-width: 52ch; }
+
+    .status {
+      display: inline-block;
+      padding: .3rem .9rem;
+      border: 2px solid var(--ink);
+      background: var(--base-g);
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: .85rem;
+      text-transform: uppercase;
+      transform: rotate(-1.5deg);
+      clip-path: polygon(3% 5%, 97% 1%, 94% 96%, 1% 92%);
+    }
+
+    .facts { margin: 0 0 1.25rem; padding: 0; list-style: none; }
+    .facts li { padding-left: 1.5rem; position: relative; margin-bottom: .35rem; }
+    .facts li::before {
+      content: "";
+      position: absolute; left: 0; top: .5em;
+      width: .7rem; height: .7rem;
+      border: 2px solid var(--ink);
+      background: var(--base-a);
+      clip-path: polygon(10% 0%, 100% 10%, 90% 100%, 0% 90%);
+    }
+    .facts li:nth-child(2)::before { background: var(--base-t); }
+    .facts li:nth-child(3)::before { background: var(--base-c); }
+
+    .button {
+      display: inline-block;
+      padding: .6rem 1.4rem;
+      border: var(--line);
+      background: var(--base-a);
+      box-shadow: 3px 3px 0 var(--ink);
+      font-family: var(--font-heading);
+      font-weight: 800;
+      text-decoration: none;
+      color: #fff;
+      transform: rotate(-1deg);
+      clip-path: polygon(2% 4%, 98% 1%, 95% 97%, 1% 94%);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .button:hover { 
+      transform: scale(1.05) rotate(0deg); 
+      box-shadow: 5px 5px 0 var(--ink); 
+    }
+
+    .game-clip { margin: 0; }
+    .game-clip video { 
+      width: 100%; 
+      aspect-ratio: 16 / 9; 
+      object-fit: cover; 
+      background: var(--ink); 
+      border: var(--line);
+      clip-path: polygon(0% 1%, 99% 2%, 97% 97%, 1% 99%);
+    }
+    .game-clip figcaption { margin-top: .5rem; font-size: .9rem; color: var(--ink-soft); }
+
+    @media (min-width: 860px) {
+      .game { grid-template-columns: 1fr 1fr; align-items: start; }
+      .game-clip { grid-column: 1 / -1; }
+    }
+
+    .team {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.8rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .member {
+      padding: 1.6rem 1.4rem;
+      background: #fff;
+      border: var(--line);
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease;
+    }
+
+    .member:nth-child(1) {
+      transform: rotate(-2deg);
+      clip-path: polygon(2% 4%, 98% 1%, 95% 98%, 1% 94%);
+      padding-bottom: 2rem;
+    }
+
+    .member:nth-child(2) {
+      transform: rotate(1.5deg);
+      clip-path: polygon(1% 1%, 96% 5%, 98% 95%, 4% 98%);
+      padding-top: 1.8rem;
+    }
+
+    .member:nth-child(3) {
+      transform: rotate(-1.2deg);
+      clip-path: polygon(4% 2%, 99% 0%, 93% 97%, 0% 95%);
+    }
+
+    .member:hover {
+      transform: scale(1.03) rotate(0deg);
+    }
+
+    .avatar,
+    .member img {
+      display: grid;
+      place-items: center;
+      width: 88px;
+      height: 80px;
+      margin-bottom: 1rem;
+      border: var(--line);
+      background: var(--tile-color);
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      object-fit: cover;
+      clip-path: polygon(5% 2%, 98% 8%, 92% 95%, 2% 90%);
+    }
+
+    /* Team Name: Now uses the description's font style (Carrois Gothic SC, thin/regular body font) */
+    .member h3 { 
+      margin: 0; 
+      font-size: 1.25rem; 
+      text-transform: none; 
+      letter-spacing: normal; 
+      font-family: var(--font-body);
+      font-weight: 400;
+    }
+
+    /* Team Role: Now uses the name's font style (Science Gothic, bold/uppercase heading font) */
+    .member .role { 
+      margin: .1rem 0 .75rem; 
+      color: var(--ink-soft); 
+      font-family: var(--font-heading);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
+    }
+
+    /* Team Description / Bio: Now uses the role's font style (Carrois Gothic SC, title case, soft ink color) */
+    .member .bio { 
+      margin: 0; 
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 1rem;
+    }
+
+    .contact { text-align: center; }
+    .contact p { margin: 0 auto .75rem; }
+    .email {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: clamp(1.4rem, 4vw, 2.4rem);
+      word-break: break-word;
+      text-decoration-color: var(--base-a);
+      text-decoration-thickness: 4px;
+      transform: rotate(-1deg);
+    }
+
+    .site-footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: .5rem 2rem;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding-block: 2rem 2.5rem;
+      font-size: .9rem;
+      color: var(--ink-soft);
+    }
+    .site-footer p { margin: 0; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <img src="media/logo.svg" width="100" height="100" alt="ATCG Logo">
+    
+    <nav aria-label="Main">
+      <a href="#games">GAMES</a>
+      <a href="#team">TEAM</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <h1>
+        <span class="sr-only">ATCG: All The Cool Games</span>
+        <span class="mark mark--hero" id="heroMark" role="button" tabindex="0" aria-hidden="true" title="Click or hover to expand!">
+          <span class="tile" data-base="a">A<span class="rest"><span>ll</span></span></span>
+          <span class="tile" data-base="t">T<span class="rest"><span>he</span></span></span>
+          <span class="tile" data-base="c">C<span class="rest"><span>ool</span></span></span>
+          <span class="tile" data-base="g">G<span class="rest"><span>ames</span></span></span>
+        </span>
+      </h1>
+
+      <p class="lede">
+        We're a small studio making big swings; we like games, we
+        like making them, and we think you might like them, too.
+        Check out <a href="#games">Ice Cream Apocalypse</a>, coming
+        soon!
+      </p>
+
+      <figure class="snapshot">
+        <video
+          src="media/playtest.mp4"
+          poster="media/playtest.webp"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-label="Two players with a controller, playing Ice Cream Apocalypse at our playtest booth"
+        ></video>
+        <figcaption>
+          Playtest booth @ Animatsuri (August 26th, 2026)
+        </figcaption>
+      </figure>
+    </section>
+
+    <section id="games" class="band">
+      <div>
+        <h2 class="section-title">Games</h2>
+
+        <article class="game">
+          <img
+            class="game-art"
+            src="media/ica-keyart.webp"
+            width="1200"
+            height="900"
+            alt="Ice Cream Apocalypse key art: a cheerful grandma holding an ice cream cone, and her zombie double on the other side of a lightning bolt."
+          />
+
+          <div class="game-body">
+            <p class="status">In development</p>
+            <h3>Ice Cream Apocalypse</h3>
+            <p>
+              Just because it's a Zombie Apocalypse doesn't mean
+              you can clock out! One's on the weapons, the other's
+              on the scoops; an asymmetric co-op roguelike for 2.
+              Serve the ones munching for ice cream, shoot the
+              ones munching for brains.
+            </p>
+            <ul class="facts">
+              <li>A food-game/FPS hybrid</li>
+              <li>Chill cooperative roguelike</li>
+              <li>Uncover the conspiracy</li>
+            </ul>
+          </div>
+
+          <figure class="game-clip">
+            <video
+              src="media/ica-gameplay.mp4"
+              poster="media/ica-gameplay.webp"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="none"
+              aria-label="Ice Cream Apocalypse gameplay: serving ice cream, choosing cards, fighting a zombie raid"
+            ></video>
+            <figcaption>From our latest update build.</figcaption>
+          </figure>
+        </article>
+      </div>
+    </section>
+
+    <section id="team">
+      <div>
+        <h2 class="section-title">Team</h2>
+        <ul class="team">
+          <li class="member">
+            <img
+              src="media/noa.webp"
+              alt=""
+              width="84"
+              height="84"
+              style="--tile-color: var(--base-a);"
+            />
+            <h3>Noa Merom</h3>
+            <p class="role">CEO, Lead Producer</p>
+            <p class="bio">The one who's crazy.</p>
+          </li>
+          <li class="member">
+            <img
+              src="media/jonathan.webp"
+              alt=""
+              width="84"
+              height="84"
+              style="--tile-color: var(--base-t);"
+            />
+            <h3>Jonathan Eddie Amir</h3>
+            <p class="role">Lead Developer</p>
+            <p class="bio">The one who makes stuff work.</p>
+          </li>
+          <li class="member">
+            <img
+              src="media/jasmine.webp"
+              alt=""
+              width="84"
+              height="84"
+              style="--tile-color: var(--base-g);"
+            />
+            <h3>Jasmine Elal Gindi</h3>
+            <p class="role">Lead Artist</p>
+            <p class="bio">The one who makes stuff pretty.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="band">
+      <div class="contact">
+        <h2 class="section-title">Contact</h2>
+        <p>Press, playtests, publishing, or just saying hi:</p>
+        <a class="email" href="mailto:contact@playatcg.com">contact@playatcg.com</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 All The Cool Games</p>
+    <p class="motto">Play's in our DNA</p>
+  </footer>
+
+  <script>
+    // Toggle hero mark expansion on click or keyboard press
+    const heroMark = document.getElementById('heroMark');
+    if (heroMark) {
+      heroMark.addEventListener('click', () => {
+        heroMark.classList.toggle('is-open');
+      });
+      heroMark.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          heroMark.classList.toggle('is-open');
+        }
+      });
+    }
+
+    // Respect reduced motion: no autoplaying video, show controls instead.
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      for (const video of document.querySelectorAll("video")) {
+        video.removeAttribute("autoplay");
+        video.pause();
+        video.controls = true;
+      }
+    }
+  </script>
+</body>
 </html>
