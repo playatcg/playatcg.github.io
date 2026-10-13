@@ -357,10 +357,9 @@
     }
 
     .game-clip { margin: 0; }
-    .game-clip video { 
+    .game-clip iframe { 
       width: 100%; 
       aspect-ratio: 16 / 9; 
-      object-fit: cover; 
       background: var(--ink); 
       border: var(--line);
       clip-path: polygon(0% 1%, 99% 2%, 97% 97%, 1% 99%);
@@ -424,7 +423,7 @@
       clip-path: polygon(5% 2%, 98% 8%, 92% 95%, 2% 90%);
     }
 
-    /* Team Name: Now uses the description's font style (Carrois Gothic SC, thin/regular body font) */
+    /* Team Name: Carrois Gothic SC font style */
     .member h3 { 
       margin: 0; 
       font-size: 1.25rem; 
@@ -434,7 +433,7 @@
       font-weight: 400;
     }
 
-    /* Team Role: Now uses the name's font style (Science Gothic, bold/uppercase heading font) */
+    /* Team Role: Science Gothic bold font style */
     .member .role { 
       margin: .1rem 0 .75rem; 
       color: var(--ink-soft); 
@@ -445,7 +444,7 @@
       font-size: 0.95rem;
     }
 
-    /* Team Description / Bio: Now uses the role's font style (Carrois Gothic SC, title case, soft ink color) */
+    /* Team Description / Bio: Carrois Gothic SC font style */
     .member .bio { 
       margin: 0; 
       font-family: var(--font-body);
@@ -558,16 +557,14 @@
           </div>
 
           <figure class="game-clip">
-            <video
-              src="media/ica-gameplay.mp4"
-              poster="media/ica-gameplay.webp"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="none"
-              aria-label="Ice Cream Apocalypse gameplay: serving ice cream, choosing cards, fighting a zombie raid"
-            ></video>
+            <iframe 
+              src="https://www.youtube.com/embed/oGpQ4SfGc4Y?si=GB9SgkqBLvcG3ROR" 
+              title="YouTube video player" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              referrerpolicy="strict-origin-when-cross-origin" 
+              allowfullscreen
+            ></iframe>
             <figcaption>From our latest update build.</figcaption>
           </figure>
         </article>
